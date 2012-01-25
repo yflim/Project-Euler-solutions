@@ -1,4 +1,4 @@
-;; First-draft solution
+;; Incomplete first-draft solution
 #lang racket
 
 (define small 13195)
