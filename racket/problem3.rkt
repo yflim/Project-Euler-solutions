@@ -1,11 +1,9 @@
-;; Incomplete first-draft solution
 #lang racket
 
 (define (largest-prime-factor num)
   (let* ([sqrt-num (sqrt num)])
     (define (largest-factor-gteq odd fac)
       (cond [(> fac (sqrt odd)) odd]
-            [(> fac sqrt-num) odd]
             [(= (modulo odd fac) 0) (/ odd fac)]
             [else (largest-factor-gteq odd (+ fac 2))]))
     (define (largest-prime-factor-gteq num minfac lst)
