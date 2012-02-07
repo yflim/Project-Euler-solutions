@@ -1,5 +1,8 @@
 #lang racket
 
+;; The prime factors of 13195 are 5, 7, 13 and 29.
+;; What is the largest prime factor of the number 600851475143?
+
 (define (largest-prime-factor num)
   (let* ([sqrt-num (sqrt num)])
     (define (largest-factor-gteq odd fac)
@@ -10,7 +13,7 @@
       (let* ([bigfac (largest-factor-gteq num minfac)]
              [bigfac-complement (/ num bigfac)])
         (cond [(not (= bigfac num))
-               (largest-prime-factor-gteq bigfac bigfac-complement (append lst (cons bigfac-complement '())))]
+               (largest-prime-factor-gteq bigfac bigfac-complement (append lst (list bigfac-complement)))]
               [else num])))
     (largest-prime-factor-gteq num 3 '())))
 
