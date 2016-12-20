@@ -1,8 +1,8 @@
 class SieveOfEratosthenes
-  
+
   def self.sieve_up_to(max)
     max_sqrt = Math.sqrt(max)
-    primes = [2]
+    primes = [max.is_a?(Float) ? 2.0 : 2]
     unsieved = []
     (3..max).step(2) { |i| unsieved << i }
     curr_prime = unsieved[0]
