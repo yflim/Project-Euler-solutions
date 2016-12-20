@@ -4,18 +4,19 @@ class SieveOfEratosthenes
     max_sqrt = Math.sqrt(max)
     primes = [max.is_a?(Float) ? 2.0 : 2]
     unsieved = []
-    (3..max).step(2) { |i| unsieved << i }
-    curr_prime = unsieved[0]
-    while curr_prime <= max_sqrt
-      curr_sqr_idx = unsieved.index(curr_prime ** 2)
-      primes.push(unsieved.delete_at(0))
-      unsieved.select!{ |i| i % curr_prime != 0 }
+    if max > 2
+      (3..max).step(2) { |i| unsieved << i }
       curr_prime = unsieved[0]
+      while curr_prime <= max_sqrt
+        primes.push(unsieved.delete_at(0))
+        unsieved.select!{ |i| i % curr_prime != 0 }
+        curr_prime = unsieved[0]
+      end
     end
     primes.concat(unsieved)
     return primes
   end
-  
+
   def initialize(max)
     @max = max
     @unsieved = [2]
