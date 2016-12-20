@@ -2,6 +2,7 @@
 
 (provide (all-defined-out))
 
+;; for correctness, need to first call with complement <= smallest factor
 (define (largest-factor-gteq odd complement)
   (cond [(> complement (sqrt odd)) odd]
         [(= (modulo odd complement) 0) (/ odd complement)]
