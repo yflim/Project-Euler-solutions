@@ -33,35 +33,33 @@ class SieveOfEratosthenes
     end
     @primes = @unsieved.dup
   end
-    
+
   def get_next_prime(*preceding)
     sieve_all unless @primes
     if preceding.length > 0
-      get_next_prime_given_preceding(@primes, preceding[0])
+      get_next_prime_given_preceding(preceding[0])
     else
-      @last_returned = 
-        @last_returned ? 
-        get_next_prime_given_preceding(@primes, @last_returned) : 2               
+      @last_returned = @last_returned ? get_next_prime_given_preceding(@last_returned) : 2
     end
-  end     
+  end
 
   private
-  
+
   def self.not_multiple_of(primes, num)
     primes.each do |p|
       return false if num % p == 0
     end
     return true
   end
-  
-  def get_next_prime_given_preceding(primes, preceding)
-    if prev_index = primes.index(preceding)
-      primes[prev_index + 1]
+
+  def get_next_prime_given_preceding(preceding)
+    if prev_index = @primes.index(preceding)
+      @primes[prev_index + 1]
     else
-      primes[primes.index{ |i| i > preceding }]
+      @primes[primes.index{ |i| i > preceding }]
     end
   end
-  
+
   # not currently needed
   def reset_max(new_max)
     if new_max > @max
@@ -70,13 +68,13 @@ class SieveOfEratosthenes
       decrease_max(new_max)
     end
   end
-  
+
   # to be fleshed out if necessary
   def increase_max(new_max)
   end
-  
+
   # to be fleshed out if necessary
   def decrease_max(new_max)
   end
-  
+
 end
